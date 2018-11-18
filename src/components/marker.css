@@ -8,4 +8,9 @@
   font-weight: 600;
 }
 
+/*it select all markers - need use if else in marker.js*/
+.marker.selected {
+  background-color: yellow;
+  border-color: black;
+}
 /*import css to my component*/
