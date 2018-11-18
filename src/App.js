@@ -11,6 +11,19 @@ class App extends Component {
       flats: []
     };
   }
+
+  componentDidMount() {
+    // console.log("working");
+    const url = "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/flats.json";
+    fetch(url) //Ajax
+      .then(response => response.json())
+      .then((data) => {
+        // console.log(data); // array of objects
+      this.setState({
+        flats: data
+      });
+      })
+  }
   render() {
 
   //   const flat = {
