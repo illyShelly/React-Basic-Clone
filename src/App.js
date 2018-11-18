@@ -22,16 +22,37 @@ class App extends Component {
       .then((data) => {
         // console.log(data); // array of objects
       this.setState({
-        flats: data
+        flats: data,
+        selectedFlat: null
       });
       })
   }
+
+  selectFlat = (flat) => {
+    console.log(flat); // works when click on flat
+    // we re-render map - we change state then
+    // extends state to selectedFlat starting with null
+    // when clicked change lat, lng from const variable
+    this.setState({
+      selectedFlat: flat
+    })
+  }
+
   render() {
 
   // passing desired city lat, lng
-  const center = {
+  // when click on flat selectFlat method change state
+  // rerender const -> let, if/else statement
+  let center = {
     lat: 48.8566,
     lng: 2.3522
+  }
+  // when click on flat maps re-render and move to marker
+  if (this.state.selectedFlat) {
+    center = {
+      lat: this.state.selectedFlat.lat,
+      lng: this.state.selectedFlat.lng
+    }
   }
     return (
       <div className="app">
@@ -39,7 +60,11 @@ class App extends Component {
           <div className="search"></div>
           <div className="flats">
             {this.state.flats.map((flat) =>
-              <Flat flat={flat} key={flat.name}/>
+              <Flat
+              flat={flat}
+              key={flat.name}
+              selectFlat={this.selectFlat}
+              />
           )}
           </div>
         </div>
@@ -47,7 +72,7 @@ class App extends Component {
            <GoogleMapReact
           // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
           center={center}
-          zoom={13}
+          zoom={15}
         >
           {this.state.flats.map((flat) =>
             <Marker lat={flat.lat} lng={flat.lng} text={flat.price} currency={flat.priceCurrency} key={flat.name}

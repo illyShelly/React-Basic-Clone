@@ -14,6 +14,14 @@ import './flat.css';
 // better than to pass all props separatelly, good for API
 
 class Flat extends Component {
+  // use this or underneath onClick={() => {this.props.handleClick()}}> // and changing name to selectFlat even in App.js line 50 as props
+  handleClick = () => {
+    // call the parent method selectFlat
+    // app is giving function to child flat, and calls parent method when click Event happens
+    // - because flat is separated from external world
+    this.props.selectFlat(this.props.flat);
+  }
+
   render() {
 
     const title = this.props.flat.price + " " + this.props.flat.priceCurrency + " - " + this.props.flat.name;
@@ -24,7 +32,7 @@ class Flat extends Component {
     };
 
     return(
-      <div className="flat">
+      <div className="flat" onClick={this.handleClick}>
         <div className="flat-picture" style={style}></div>
         <div className="flat-title">{title}</div>
       </div>
