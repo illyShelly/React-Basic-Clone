@@ -13,8 +13,6 @@ import './flat.css';
 // passing to the components this way: <Flat flat={flat} />
 // better than to pass all props separatelly, good for API
 
-
-
 class Flat extends Component {
   render() {
 

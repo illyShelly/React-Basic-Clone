@@ -6,6 +6,7 @@ import Flat from './components/flat';
 
 class App extends Component {
   render() {
+
     const flat = {
     "id": 145,
     "name": "Charm at the Steps of the Sacre Coeur/Montmartre",
@@ -16,14 +17,16 @@ class App extends Component {
     "lng": 2.346890
   };
 
+  const flats = [flat, flat]
+
     return (
       <div className="app">
         <div className="main">
           <div className="search"></div>
           <div className="flats">
-            <Flat flat={flat} />
-            <Flat flat={flat} />
-            <Flat flat={flat} />
+            {flats.map((flat) =>
+              <Flat flat={flat} />
+          )}
           </div>
         </div>
         <div className="map">
@@ -34,3 +37,6 @@ class App extends Component {
 }
 
 export default App;
+
+// list of flats it change, flat itselves not
+// array of flats => we will fetch - and loop it through map
