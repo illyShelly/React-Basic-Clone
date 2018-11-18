@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GoogleMapReact from 'google-map-react';
 import './App.css';
 import Flat from './components/flat';
 // need import Flat component
@@ -26,29 +27,28 @@ class App extends Component {
   }
   render() {
 
-  //   const flat = {
-  //   "id": 145,
-  //   "name": "Charm at the Steps of the Sacre Coeur/Montmartre",
-  //   "imageUrl": "https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/images/flat1.jpg",
-  //   "price": 164,
-  //   "priceCurrency": "EUR",
-  //   "lat": 48.884211,
-  //   "lng": 2.346890
-  // };
-
-  // const flats = [flat, flat]
-
+  // passing desired city lat, lng
+  const center = {
+    lat: 48.8566,
+    lng: 2.3522
+  }
     return (
       <div className="app">
         <div className="main">
           <div className="search"></div>
           <div className="flats">
             {this.state.flats.map((flat) =>
-              <Flat flat={flat} />
+              <Flat flat={flat} key={flat.name}/>
           )}
           </div>
         </div>
         <div className="map">
+           <GoogleMapReact
+          // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
+          center={center}
+          zoom={12}
+        >
+        </GoogleMapReact>
         </div>
       </div>
     );
