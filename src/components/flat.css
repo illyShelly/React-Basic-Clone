@@ -1,12 +1,22 @@
-.flat {
-
+.flats {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  /*stick to top*/
 }
 
+.flat {
+  flex-basis: calc(50% - 20px);
+  /*takes 50% of flexbox space with 20px padding*/
+  margin: 10px;
+}
 .flat-picture {
   height: 200px;
-  background-color: darkblue;
+  background-size: cover;
+  background-position: center;
 }
 
 .flat-title {
-
+  margin-top: 10px;
+  font-weight: 600;
 }

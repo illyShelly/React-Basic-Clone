@@ -28,11 +28,9 @@ class Flat extends Component {
     return(
       <div className="flat">
         <div className="flat-picture" style={style}></div>
-        <div className="flat-title">
-          {title}
-        </div>
+        <div className="flat-title">{title}</div>
       </div>
-      );
+    );
   }
 }
 
