@@ -10,7 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      flats: []
+      flats: [],
+      selectedFlat: null,
+      search: "",
+      allFlats: []
     };
   }
 
@@ -23,7 +26,7 @@ class App extends Component {
         // console.log(data); // array of objects
       this.setState({
         flats: data,
-        selectedFlat: null
+        allFlats: data // after search get back all flats to display
       });
       })
   }
@@ -35,6 +38,15 @@ class App extends Component {
     // when clicked change lat, lng from const variable
     this.setState({
       selectedFlat: flat
+    })
+  }
+
+  handleSearch = (event) => {
+    // console.log(event); // when I type to search input
+    this.setState({
+      search: event.target.value, // change state with new value
+      // filter my match and update allFlats array
+      flats: this.state.allFlats.filter((flat) => new RegExp(event.target.value, "i").exec(flat.name))
     })
   }
 
@@ -57,7 +69,13 @@ class App extends Component {
     return (
       <div className="app">
         <div className="main">
-          <div className="search"></div>
+          <div className="search">
+            <input type="text"
+            placeholder="Search ..."
+            value={this.state.search}
+            onChange={this.handleSearch}
+            />
+          </div>
           <div className="flats">
             {this.state.flats.map((flat) =>
               <Flat
@@ -72,7 +90,7 @@ class App extends Component {
            <GoogleMapReact
           // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
           center={center}
-          zoom={15}
+          zoom={13}
         >
           {this.state.flats.map((flat) =>
             <Marker
