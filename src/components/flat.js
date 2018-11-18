@@ -16,7 +16,7 @@ import './flat.css';
 class Flat extends Component {
   render() {
 
-    const title = this.props.flat.price + this.props.flat.priceCurrency + " - " + this.props.flat.name;
+    const title = this.props.flat.price + " " + this.props.flat.priceCurrency + " - " + this.props.flat.name;
 
     const style = {
       // template literals ES6

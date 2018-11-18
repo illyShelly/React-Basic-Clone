@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import './App.css';
 import Flat from './components/flat';
+import Marker from './components/marker'
 // need import Flat component
 // and put here the variable flat => not to flat.js!!
 
@@ -46,8 +47,12 @@ class App extends Component {
            <GoogleMapReact
           // bootstrapURLKeys={{ key: /* YOUR KEY HERE */ }}
           center={center}
-          zoom={12}
+          zoom={13}
         >
+          {this.state.flats.map((flat) =>
+            <Marker lat={flat.lat} lng={flat.lng} text={flat.price} currency={flat.priceCurrency} key={flat.name}
+            />
+            )}
         </GoogleMapReact>
         </div>
       </div>

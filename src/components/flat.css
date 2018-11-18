@@ -9,7 +9,13 @@
   flex-basis: calc(50% - 20px);
   /*takes 50% of flexbox space with 20px padding*/
   margin: 10px;
+  cursor: pointer;
+  /* as hover appears pointer */
 }
+.flat:hover {
+  opacity: 0.91;
+}
+
 .flat-picture {
   height: 200px;
   background-size: cover;
